@@ -2,7 +2,7 @@
 using ChainOfRespSdomino;
 
 const string OrdersDirectory = "C:\\Workspace\\Sdomino";
-const string OutputFile = @"C:\\Workspace\\Sdomino\\OrderRegister.TXT";
+const string OutputFile = @"C:\Workspace\SdominoordiniTot.TXT";
 
 var pizzaHandler = new PizzaTypeHandler(PriceManagerFactory.GetPriceManager(typeof(PizzaTypeHandler)));
 var doughHandler = new DoughHandler(PriceManagerFactory.GetPriceManager(typeof(DoughHandler)));
@@ -37,7 +37,7 @@ foreach (var file in directoryInfo)
         orderItems.Add(pizza);
     }
     orderTotalsStringBuilder.AppendLine(
-        $"{orderId}; Totals: {orderItems.Sum(x => x.GetTotals())}");
+        $"{orderId};{orderItems.Sum(x => x.GetTotals())}");
 }
 orderRepository.SaveToFile(OutputFile,
     orderTotalsStringBuilder.ToString());

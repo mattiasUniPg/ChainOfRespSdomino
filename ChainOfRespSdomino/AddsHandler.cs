@@ -13,7 +13,15 @@ namespace ChainOfRespSdomino
 
         public override void ProcessPrice(Pizza pizza)
         {
-            foreach (var component in pizza.Components)
+
+            if(pizza.Components.Any(x =>x.ItemName.Equals("ananas",StringComparison.InvariantCultureIgnoreCase)))
+            {
+                pizza.TipoPizza.Ammount = 0;
+                pizza.Impasto.Ammount = 0;
+                pizza.Components.ForEach(x => x.Ammount = 0); 
+
+            }
+                    foreach (var component in pizza.Components)
             {
                 component.Ammount = _priceManager.GetPrice(component.ItemName);
             }
